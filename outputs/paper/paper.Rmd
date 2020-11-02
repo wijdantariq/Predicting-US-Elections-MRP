@@ -133,6 +133,10 @@ Arnold, Jeffrey B. (2019). ggthemes: Extra Themes, Scales and Geoms for ‘ggplo
 
 Auguie, Baptiste (2017). gridExtra: Miscellaneous Functions for “Grid” Graphics. R package version 2.3. https://CRAN.R-project.org/package=gridExtra 
 
+Di Lorenzo, Paolo (2020). usmap: US Maps Including Alaska and Hawaii. R package version 0.5.1. https://CRAN.R-project.org/package=usmap
+
+Douglas Bates, Martin Maechler, Ben Bolker, Steve Walker (2015). Fitting Linear Mixed-Effects Models Using lme4. Journal of Statistical Software, 67(1), 1-48. doi:10.18637/jss.v067.i01.
+
 Firke, Sam (2020). janitor: Simple Tools for Examining and Cleaning Dirty Data. R package  version 2.0.1. https://CRAN.R-project.org/package=janitor 
 
 Hlavac, M. (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2.2. https://CRAN.R-project.org/package=stargazer 
