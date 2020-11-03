@@ -22,7 +22,7 @@ AGE <- ggplot(survey, aes(x =age)) +
   scale_y_continuous(labels=scales::percent) +
   ylab("relative frequencies")+
   theme_minimal() +
-  ggtitle("Respondents' Age Distribution")
+  ggtitle("Age distribution in survey")
 AGE
 ggsave("outputs/figures/UCLA_age_distribution.pdf")
 
@@ -39,7 +39,7 @@ GENDER <- GENDER %>%
   ylab("") + xlab("") + 
   labs(title = "", fill="Gender ") + 
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
-  theme(text = element_text(size=15)) + ggtitle("Respondents' Gender Distribution")
+  theme(text = element_text(size=15)) + ggtitle("Gender distribution in survey")
 GENDER
 ggsave("outputs/figures/UCLA_gender_distribution.pdf")
 
@@ -55,7 +55,7 @@ EMP <- EMP %>%
   ylab("") + xlab("") + 
   labs(title = "", fill="employment ") + 
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
-  theme(text = element_text(size=15)) + ggtitle("Respondents' Employment status Distribution")
+  theme(text = element_text(size=15)) + ggtitle("Employment status distribution in survey")
 EMP
 ggsave("outputs/figures/UCLA_employment_distribution.pdf")
 
@@ -72,7 +72,7 @@ RACE <- RACE %>%
   ylab("") + xlab("") + 
   labs(title = "", fill="race ") + 
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
-  theme(text = element_text(size=15)) + ggtitle("Respondents' Distribution of Race")
+  theme(text = element_text(size=15)) + ggtitle("Race distribution in survey")
 RACE
 ggsave("outputs/figures/UCLA_race_distribution.pdf")
 

@@ -31,6 +31,8 @@ The remainder of the paper is structured as follows. Section 2 discusses the dat
 
 Introduce R, R packages used, logistic regression and MRP methods briefly here as well as a quick note on results..briefly introduce which data we use and what key findings were...WHO IS GOING TO WIN??...give a sketch of the rest of the report)
 
+\newpage
+
 ## 2 Data
 
 Before going into the details of the post-stratification we conducted, we will discuss what post-stratification is and when it can be used. Post-stratification is implemented after simpler random samples have been conducted. It is used to properly balance the representation of variables across the target population to gain more precise estimates and create greater confidence in inferences being made. Post-stratification involves classifying each member of a population into a single subgroup or strata to then calculate the probability sample from each stratum. Because of this, post-stratification cannot be used in studies with observations that overlap or are not clearly classified, as this may inaccurately reflect the population. Another challenge is to find definitive lists of variables for an entire population that fall in line with the variables collected for the original sample.
@@ -39,9 +41,40 @@ The data we used to post-stratify was the 2018 American Community Survey (ACS) d
 
 While the ACS data measures hundreds of variables, we extracted 10 demographic variables we thought could predict the popular vote in the 2020 American presidential election. They were: age, sex, household income, education attainment, employment status, state, region, birthplace, race, and whether a respondent had Hispanic origins. These variables were also chosen because of their ability to coincide with that of the survey variables. For example, household income was chosen rather than individual income since the UCLA survey did not ask about personal income. We further manipulated the data by cleaning responses to match the UCLA options. For income, we constructed bins of income intervals that match the survey’s since the ACS had exact income values. We selected respondents between 18 and 93 years of age. We made birthplace a binary variable to be either born in the ‘USA’ or ‘another country’. We constructed a new race variable that incorporates Hispanic origins; this meant that if a respondent had answered they had Hispanic origins, it would override and replace the answer of their identifying race. We also kept Chinese identifying respondents separate from other Asians and did these things because Chinese and Hispanic respondents have shown to have strong voting trends with contemporary topics like America’s border policies and COVID-19 (Krogstad and Lopez, 2020). The figure below depicts the variables of the ACS data after cleaning. 
 
+\newpage
+
+```{r, figures-side-age, fig.show="hold", out.width="50%", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/ACS_age_distribution.pdf"))
+knitr::include_graphics(here::here("outputs/figures/UCLA_age_distribution.pdf"))
+```
+
+  
+
+```{r, figures-side-emp, fig.show="hold", out.width="50%", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/ACS_employment_distribution.pdf"))
+knitr::include_graphics(here::here("outputs/figures/UCLA_employment_distribution.pdf"))
+```
+
+  
+
+```{r, figures-side-gender, fig.show="hold", out.width="50%", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/ACS_gender_distribution.pdf"))
+knitr::include_graphics(here::here("outputs/figures/UCLA_gender_distribution.pdf"))
+```
+
+  
+
+```{r, figures-side-race, fig.show="hold", out.width="50%", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/ACS_race_distribution.pdf"))
+knitr::include_graphics(here::here("outputs/figures/UCLA_race_distribution.pdf"))
+```
+
+  
+\newpage
 
 ## 3 Model
 
+\newpage
 
 ## 4 Results
 
@@ -73,6 +106,7 @@ knitr::include_graphics(here::here("outputs/figures/predicted_republican_employm
 knitr::include_graphics(here::here("outputs/figures/predicted_republican_gender.pdf"))
 ```
 
+\newpage
 
 ## 5 Discussion, Limitations, and Future Work
 
