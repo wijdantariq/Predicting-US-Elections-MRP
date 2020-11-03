@@ -8,7 +8,11 @@ indent: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tint)
+library(kableExtra)
+library(tidyverse)
+library(tinytex)
+library(knitr)
 ```
 
 Keywords: Forecasting; US 2020 Election; Trump; Biden; Multilevel regression with post-stratification
@@ -25,15 +29,25 @@ We find that Biden/Trump is likely to win! (briefly discuss results here).
 
 The remainder of the paper is structured as follows. Section 2 discusses the datasets that we use and describes the data cleaning process. Section 3 introduces our models and discusses the multilevel regression with post-stratification methodology that we used. Section 4 presents our results. Finally, Section 5 discusses our results, addresses limitations, and suggests future avenues for work in this area.
 
-(Introduce R, R packages used, logistic regression and MRP methods briefly here as well as a quick note on results..briefly introduce which data we use and what key findings were...WHO IS GOING TO WIN??...give a sketch of the rest of the report)
+Introduce R, R packages used, logistic regression and MRP methods briefly here as well as a quick note on results..briefly introduce which data we use and what key findings were...WHO IS GOING TO WIN??...give a sketch of the rest of the report)
 
 ## 2 Data
 
-Include a discussion on how the data was obtained and point out any biases if there are any. e.g. 'the frame for the survey is all Xbox users so women are less likely to be sampled....'. We need to include a discussion like this about UCLA and ACS datasets.
+Before going into the details of the post-stratification we conducted, we will discuss what post-stratification is and when it can be used. Post-stratification is implemented after simpler random samples have been conducted. It is used to properly balance the representation of variables across the target population to gain more precise estimates and create greater confidence in inferences being made. Post-stratification involves classifying each member of a population into a single subgroup or strata to then calculate the probability sample from each stratum. Because of this, post-stratification cannot be used in studies with observations that overlap or are not clearly classified, as this may inaccurately reflect the population. Another challenge is to find definitive lists of variables for an entire population that fall in line with the variables collected for the original sample.
+
+The data we used to post-stratify was the 2018 American Community Survey (ACS) data which we downloaded from the Integrated Public Use Microdata (IPUMS) US project website (Ruggles et al., 2020). The ACS is a national survey that is conducted annually. Participation in the survey is manadatory by law. It supplements the census and provides annual data on information to determine federal and state funds in America (the target population). The U.S. Bureau contacts 3.5 million randomly selected American households (the sampling frame) from their master address file each year to take the standardized survey through internet, mail, telephone, or in-person interviews. These addresses are selected through a sampling method that ensures that a more stable estimate for sparsely populated areas and groups (Groves, 2012). Since the survey is mandatory, the frame and actual sample are very similar. The Census Bureau is bound to strict confidentiality and has employed statistical methodologies so that the data we have access to has no identifying information. Strengths of the ACS would be its large scale response rate and several topics covering housing, social, and economical characteristics. However, the ACS lacks other key variables such as precise household vicinity, political ideology, and religion.  
+
+While the ACS data measures hundreds of variables, we extracted 10 demographic variables we thought could predict the popular vote in the 2020 American presidential election. They were: age, sex, household income, education attainment, employment status, state, region, birthplace, race, and whether a respondent had Hispanic origins. These variables were also chosen because of their ability to coincide with that of the survey variables. For example, household income was chosen rather than individual income since the UCLA survey did not ask about personal income. We further manipulated the data by cleaning responses to match the UCLA options. For income, we constructed bins of income intervals that match the survey’s since the ACS had exact income values. We selected respondents between 18 and 93 years of age. We made birthplace a binary variable to be either born in the ‘USA’ or ‘another country’. We constructed a new race variable that incorporates Hispanic origins; this meant that if a respondent had answered they had Hispanic origins, it would override and replace the answer of their identifying race. We also kept Chinese identifying respondents separate from other Asians and did these things because Chinese and Hispanic respondents have shown to have strong voting trends with contemporary topics like America’s border policies and COVID-19 (Krogstad and Lopez, 2020). The figure below depicts the variables of the ACS data after cleaning. 
+
+
 
 ## 3 Model
 
 ## 4 Results
+
+```{r map, fig.cap = "Election predictions by state.", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/map.pdf"))
+```
 
 ## 5 Discussion, Limitations, and Future Work
 
@@ -71,11 +85,15 @@ Erikson, R. S., & Tedin, K. L. (2015). *American public opinion: Its origins, co
 
 Gelman, A., & Azari, J. (2017). 19 things we learned from the 2016 election. *Statistics and Public Policy*, 4(1), 1-10.
 
+Groves, R. (2012). The pros and cons of making the Census Bureau's American Community Survey Voluntary. *Prepared statement of Robert M. Groves, Director of the U.S. Census Bureau, before the  Subcommittee on Health Care, District of Columbia, Census and the National Archives Committee on Oversight and Government Reform United States House of Representatives*. 6 March 2012.
+
 Fishbein, M., & Ajzen, I. (2011). *Predicting and changing behavior: The reasoned action approach*. Taylor & Francis.
 
 Inglehart, R. F., & Norris, P. (2016). Trump, Brexit, and the rise of populism: Economic have-nots and cultural backlash. HKS Working Paper No. RWP16-026.
 
 Kennedy, C., Blumenthal, M., Clement, S., Clinton, J. D., Durand, C., Franklin, C., McGeeney, K., Miringoff, L., Olson, K., Rivers, D., Saad, L. Witt, G. E., & Wlezien, C. (2018). An evaluation of the 2016 election polls in the United States. *Public Opinion Quarterly*, 82(1), 1-33.
+
+Krogstad, J. & Lopez, M. (2020). Latino voters have growing confidence in Biden on key issues, while confidence in Trump remains low. Pew Research Center. Retrieved from: https://www.pewresearch.org/fact-tank/2020/10/16/latino-voters-have-growing-confidence-in-biden-on-key-issues-while-confidence-in-trump-remains-low/
 
 Lajevardi, N., & Abrajano, M. (2019). How negative sentiment toward Muslim Americans predicts support for Trump in the 2016 Presidential Election. *The Journal of Politics*, 81(1), 296-302.
 
@@ -83,7 +101,11 @@ Metaxas, P. T., Mustafaraj, E., & Gayo-Avello, D. (2011). How (not) to predict e
 
 Petrocik, J. R. (1996). Issue ownership in presidential elections, with a 1980 case study. *American Journal of Political Science*, 825-850.
 
+Ruggles, S., Flood, S., Goeken, R., Grover, J., Meyer, E., Pacas, J., & Sobek, M. (2020). IPUMS USA: Version 10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D010.V10.0
+
 Silver, N. (2012). *The signal and the noise: why so many predictions fail--but some don't*. Penguin.
+
+Tausanovitch, C. & Vavreck, L. (2020). Democracy Fund + UCLA Nationscape, October 10-17, 2019 (version 20200814). Retrieved from https://www.voterstudygroup.org/.
 
 Tetlock, P. E., & Gardner, D. (2016). *Superforecasting: The art and science of prediction*. Random House.
 
