@@ -1,0 +1,234 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.2)  3 NOV 2020 00:03
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**.//outputs/tables/regression.tex
+(././/outputs/tables/regression.tex
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-10-27> xparse <2020-03-03>
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.
+cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.c
+lo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor
+.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/
+color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Package option `dvispnames' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/
+pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/colortbl/colo
+rtbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.s
+ty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen139
+\ar@mcellbox=\box47
+\extrarowheight=\dimen140
+\NC@list=\toks15
+\extratabsurround=\skip49
+\backup@length=\skip50
+\ar@cellbox=\box48
+)
+\everycr=\toks16
+\minrowclearance=\skip51
+)
+\rownum=\count183
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/svgnam
+.def
+File: svgnam.def 2016/05/11 v2.12 Predefined colors according to SVG 1.1 (UK)
+))
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geom
+etry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyv
+al.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvte
+x.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex
+.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count184
+\Gm@cntv=\count185
+\c@Gm@tempcnt=\count186
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
+\Gm@dimlist=\toks18
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/multirow/mult
+irow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip52
+\multirow@cntb=\count187
+\multirow@dima=\skip53
+\bigstrutjot=\dimen149
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.s
+ty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count188
+\float@exts=\toks19
+\float@box=\box49
+\@float@everytoks=\toks20
+\@floatcapt=\box50
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtab
+le.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip54
+\LTright=\skip55
+\LTpre=\skip56
+\LTpost=\skip57
+\LTchunksize=\count189
+\LTcapwidth=\dimen150
+\LT@head=\box51
+\LT@firsthead=\box52
+\LT@foot=\box53
+\LT@lastfoot=\box54
+\LT@cols=\count190
+\LT@rows=\count191
+\c@LT@tables=\count192
+\c@LT@chunks=\count193
+\LT@p@ftn=\toks21
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc
+.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.
+sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(c:/Users/Wijdan.000/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3b
+ackend-pdftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count194
+\l__pdf_internal_box=\box55
+) (./regression.aux)
+\openout1 = `regression.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(2.84526pt, 608.60445pt, 2.84526pt)
+* v-part:(T,H,B)=(2.84526pt, 789.27945pt, 2.84526pt)
+* \paperwidth=614.29497pt
+* \paperheight=794.96997pt
+* \textwidth=608.60445pt
+* \textheight=789.27945pt
+* \oddsidemargin=-69.42473pt
+* \evensidemargin=-69.42473pt
+* \topmargin=-106.42473pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 19.
+! I can't write on file `regression.pdf'.
+(Press Enter to retry, or Control-Z to exit; default file extension is `.pdf')
+Please type another file name for output: 
+! Emergency stop.
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.81 \end{document}
+                   
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 2270 strings out of 481466
+ 32109 string characters out of 5919755
+ 326160 words of memory out of 5000000
+ 19027 multiletter control sequences out of 15000+600000
+ 536537 words of font info for 31 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 66i,11n,72p,266b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

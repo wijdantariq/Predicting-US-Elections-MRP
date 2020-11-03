@@ -1,3 +1,16 @@
+#### Preamble ####
+# Purpose: Prepare and clean the post-stratification ACS data downloaded from IPUMS
+# Author: Annie Collins, Jennifer Do, Andrea Javellana, and Wijdan Tariq
+# Data: 2 November 2020
+# Contact: annie.collins@mail.utoronto.com, jenni.do@mail.utoronto.com, 
+# andrea.javellana@mail.utoronto.com, wijdan.tariq@mail.utoronto.com
+# License: MIT
+# Pre-requisites: 
+# - Need to have downloaded the 2018 ACS data set from IPUMS 
+#  and save the folder that you're interested in to inputs/data 
+
+
+
 
 #### Workspace setup ####
 library(haven)
@@ -16,8 +29,8 @@ table(raw_data$citizen)
 reduced_data <- 
   raw_data %>% 
   select(
-    region,# (UNFINISHED, clean if needed)
-    stateicp,# (UNFINISHED)
+    region,# 
+    stateicp,# 
     sex,  #
     age, #
     race, #
@@ -135,7 +148,7 @@ table(ACS$race)
 ACS <- 
   ACS %>% 
   select(
-    region,# (if needed)
+    region, 
     stateicp,
     sex,
     age,

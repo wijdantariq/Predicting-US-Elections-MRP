@@ -212,3 +212,27 @@ gender %>% ggplot(aes(x=gender, y=post_strat_mean)) + geom_path(group=1) +
   ggtitle("Predicted Republican Proportion of Popular Vote") +
   labs(subtitle="By Gender, Survey versus Post-Stratified Estimates")
 ggsave("outputs/figures/predicted_republican_gender.pdf")
+
+# Regression ouput
+install.packages("latexpdf")
+library(latexpdf)
+
+model2_table <- stargazer(model2, type="latex",
+          title="2020 US Election Popular Vote Outcome based on state, education, age, gender, race, and employment status",
+          dep.var.labels=c("Selected Model"))
+
+as.pdf(model2_table, "/outputs/tables/regression.pdf")
+
+# Rejected model summaries
+rejected_models <- stargazer(model1, model4, type="latex", 
+          dep.var.labels=c("Model 1: excluding employment and household income",
+                           "Model 2: excluding employment and household income, age not as factor"))
+
+as.pdf(rejected_models, "/rejected_models.pdf")
+
+#means
+means <- ACS %>% summarise("Republican Vote Proportion"=mean(ACS$estimate), 
+                           "Standard Deviation" = sd(ACS$estimate)) %>% 
+  rbind(summarise(UCLA, "Republican Vote Proportion" = mean(UCLA$vote_2020), 
+                  "Standard Deviation" = sd(UCLA$vote_2020)))
+cbind(c("Post_stratification Estimate", "Survey Estimate"), means) %>% write.csv("votesummary.csv")

@@ -2,7 +2,6 @@
 
 library(tidyverse)
 library(ggthemes)
-library(cowplot)
 
 # Load the clean ACS dataset.
 ACS <- read_csv(("outputs/data/ACS.csv"), col_types = cols(census_region = col_character(), 

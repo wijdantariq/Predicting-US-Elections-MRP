@@ -1,13 +1,14 @@
 #### Preamble ####
-# Purpose: Prepare and clean the survey data downloaded from [...UPDATE ME!!!!!]
-# Author: Rohan Alexander and Sam Caetano [CHANGE THIS TO YOUR NAME!!!!]
-# Data: 22 October 2020
-# Contact: rohan.alexander@utoronto.ca [PROBABLY CHANGE THIS ALSO!!!!]
+# Purpose: Prepare and clean the survey data (nationscape) downloaded from voterstudygroup.org
+# Author: Annie Collins, Jennifer Do, Andrea Javellana, and Wijdan Tariq
+# Data: 2 November 2020
+# Contact: annie.collins@mail.utoronto.com, jenni.do@mail.utoronto.com, 
+# andrea.javellana@mail.utoronto.com, wijdan.tariq@mail.utoronto.com
 # License: MIT
 # Pre-requisites: 
-# - Need to have downloaded the data from X and save the folder that you're 
-# interested in to inputs/data 
-# - Don't forget to gitignore it!
+# - Need to have downloaded the nationscape data set  from voterstudygroup.org 
+#  and save the folder that you're interested in to inputs/data 
+
 
 
 #### Workspace setup ####
@@ -28,12 +29,12 @@ reduced_UCLA <-
          employment, #
          foreign_born,#
          gender,#
-         census_region, # (UNFINISHED, clean if needed)
+         census_region, # 
          hispanic,#
          race_ethnicity, #
          household_income,#
          education, #
-         state, #(UNFINISHED)
+         state, #
          age #
          )
 
