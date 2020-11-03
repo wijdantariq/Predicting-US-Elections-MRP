@@ -40,14 +40,39 @@ The data we used to post-stratify was the 2018 American Community Survey (ACS) d
 While the ACS data measures hundreds of variables, we extracted 10 demographic variables we thought could predict the popular vote in the 2020 American presidential election. They were: age, sex, household income, education attainment, employment status, state, region, birthplace, race, and whether a respondent had Hispanic origins. These variables were also chosen because of their ability to coincide with that of the survey variables. For example, household income was chosen rather than individual income since the UCLA survey did not ask about personal income. We further manipulated the data by cleaning responses to match the UCLA options. For income, we constructed bins of income intervals that match the survey’s since the ACS had exact income values. We selected respondents between 18 and 93 years of age. We made birthplace a binary variable to be either born in the ‘USA’ or ‘another country’. We constructed a new race variable that incorporates Hispanic origins; this meant that if a respondent had answered they had Hispanic origins, it would override and replace the answer of their identifying race. We also kept Chinese identifying respondents separate from other Asians and did these things because Chinese and Hispanic respondents have shown to have strong voting trends with contemporary topics like America’s border policies and COVID-19 (Krogstad and Lopez, 2020). The figure below depicts the variables of the ACS data after cleaning. 
 
 
-
 ## 3 Model
+
 
 ## 4 Results
 
-```{r map, fig.cap = "Election predictions by state.", include = TRUE, echo = FALSE}
+```{r map, fig.cap = "Trump favorability by state.", include = TRUE, echo = FALSE}
 knitr::include_graphics(here::here("outputs/figures/map.pdf"))
 ```
+
+```{r state, fig.cap = "Survey versus poststrat by state.", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/survey_versus_poststrat_state.pdf"))
+```
+
+```{r age, fig.cap = "Survey versus poststrat by age", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/survey_versus_poststrat_age.pdf"))
+```
+
+```{r race, fig.cap = "Predicted Republican vote by race", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/predicted_republican_race.pdf"))
+```
+
+```{r educ, fig.cap = "Education post-stratification estimates", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/predicted_republican_education.pdf"))
+```
+
+```{r emp, fig.cap = "Employment post-stratification estimates", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/predicted_republican_employment.pdf"))
+```
+
+```{r gender, fig.cap = "Gender post-stratification estimates", include = TRUE, echo = FALSE}
+knitr::include_graphics(here::here("outputs/figures/predicted_republican_gender.pdf"))
+```
+
 
 ## 5 Discussion, Limitations, and Future Work
 

@@ -1,11 +1,20 @@
+# Code for creating the UCLA survey plots.
+
 library(tidyverse)
 library(ggthemes)
 
-
-
-
-survey <- read.csv('survey.csv')
-
+survey <- read_csv(("outputs/data/UCLA.csv"), col_types = cols(employment = col_character(), 
+                                                             race_ethnicity = col_character(),
+                                                             foreign_born = col_factor(),
+                                                             gender = col_factor(),
+                                                             census_region = col_factor(),
+                                                             household_income = col_factor(),
+                                                             age = col_factor(),
+                                                             vote_2020 = col_number(),
+                                                             education = col_number(),
+                                                             state = col_number()
+                                                             )
+                 )
 
 # AGE
 AGE <- ggplot(survey, aes(x =age)) + 
@@ -15,6 +24,7 @@ AGE <- ggplot(survey, aes(x =age)) +
   theme_minimal() +
   ggtitle("Respondents' Age Distribution")
 AGE
+ggsave("outputs/figures/UCLA_age_distribution.pdf")
 
 
 # GENDER 
@@ -31,8 +41,7 @@ GENDER <- GENDER %>%
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
   theme(text = element_text(size=15)) + ggtitle("Respondents' Gender Distribution")
 GENDER
-
-
+ggsave("outputs/figures/UCLA_gender_distribution.pdf")
 
 # EMPLOYMENT
 EMP <- survey  %>% group_by(employment) %>% summarise(n = n()) %>%
@@ -48,6 +57,7 @@ EMP <- EMP %>%
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
   theme(text = element_text(size=15)) + ggtitle("Respondents' Employment status Distribution")
 EMP
+ggsave("outputs/figures/UCLA_employment_distribution.pdf")
 
 
 # RACE
@@ -64,10 +74,11 @@ RACE <- RACE %>%
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), size = 4.7) +
   theme(text = element_text(size=15)) + ggtitle("Respondents' Distribution of Race")
 RACE
+ggsave("outputs/figures/UCLA_race_distribution.pdf")
 
 
 ### Vote 2020
-vote_2020_prop <- UCLA %>% group_by(vote_2020) %>% summarise(n = n()) %>%
+vote_2020_prop <- survey %>% group_by(vote_2020) %>% summarise(n = n()) %>%
   mutate(prop = 100 * (n / sum(n)))
 p4 <- vote_2020_prop %>% ggplot(aes(x = "", y = prop, fill = )) + 
   geom_bar(width = 1, stat = "identity") + 
@@ -78,12 +89,15 @@ p4 <- vote_2020_prop %>% ggplot(aes(x = "", y = prop, fill = )) +
   labs(title = "", fill="Trump") +
   geom_text(aes(label = paste0(round(prop), "%")), position = position_stack(vjust = 0.5), angle=45, size = 4.7) +
   theme(text = element_text(size=15))
+p4
 
 # Pie Chart   
 slices <- c(2447,2680)
 lbls <- c("Trump", "Biden")
-pct <-round(slices/sum(slices)*100)
+pct <-round(slices/sum(slices)*100, digits=2)
 lbls <-paste(lbls, pct)
 lbls <-paste(lbls, "%", sep="")
+pdf("outputs/figures/UCLA_voter_choice.pdf")
 pie(slices,labels = lbls, col=rainbow(length(lbls)),
     main="Distribution of Voter choice")
+dev.off()

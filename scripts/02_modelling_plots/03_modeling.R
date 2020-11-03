@@ -1,6 +1,8 @@
 install.packages("lme4")
+install.packages("stargazer")
 library(lme4)
 library(tidyverse)
+library(stargazer)
 
 # Read in the clean survey data and clean post-strat data.
 UCLA <- read_csv(("outputs/data/UCLA.csv"), col_types = cols(employment = col_character(), 
@@ -30,20 +32,20 @@ ACS <- read_csv(("outputs/data/ACS.csv"), col_types = cols(census_region = col_c
 
 
 model1 <- glmer(vote_2020 ~ (1|state) + education + factor(age) + factor(gender) + 
-                 factor(race_ethnicity), data=UCLA, family=binomial(link="logit"))
-#
+                  factor(race_ethnicity), data=UCLA, family=binomial(link="logit"))
+
+# SELECTED MODEL
 model2 <- glmer(vote_2020 ~ (1|state) + education + factor(age) + factor(gender) + 
                   factor(race_ethnicity) + factor(employment), data=UCLA, family=binomial(link="logit"))
-#
+
 model3 <- glmer(vote_2020 ~ (1|state) + education + factor(age) + factor(gender) + 
                   factor(race_ethnicity) + household_income, data=UCLA, family=binomial(link="logit"))
 model4 <- glmer(vote_2020 ~ (1|state) + education + age + factor(gender) + 
                   factor(race_ethnicity), data=UCLA, family=binomial(link="logit"))
-summary(model1)
+summary(model2)
 
-# Note that as a factor education is insignificant, but as a numeric variable it is significant
+# Estimate likelihood to vote Republican of each ACS respondent 
 ACS$estimate <- model2 %>% predict(newdata=ACS, type="response") %>% round(digits=3)
-mean(ACS$estimate)
 
 # Construct table of cells and add estimates for each level
 cells <- plyr::count(ACS[complete.cases(ACS),] %>% select(state, education, age, gender, race_ethnicity, employment))
@@ -56,40 +58,62 @@ levels(ACS$state) <- append(state.name, values="District of Columbia", after=8)
 # Create summary tables for post-stratification outcome grouped by each variable
 # for use in constructing plots
 states <- ACS %>% group_by(state) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
-                                      sd=round(sd(estimate), digits=3), 
-                                      lower=round(quantile(estimate, 0.025), 
-                                                  digits=3), 
-                                      upper=round(quantile(estimate, 0.975), digits=3))
-age <- ACS %>% group_by(age) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
-                                                    sd=round(sd(estimate), digits=3), 
-                                                    lower=round(quantile(estimate, 0.025), 
-                                                                digits=3), 
-                                                    upper=round(quantile(estimate, 0.975), digits=3))
-race_ethnicity <- ACS %>% group_by(race_ethnicity) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
-                                                     sd=round(sd(estimate), digits=3), 
-                                                     lower=round(quantile(estimate, 0.025), 
-                                                                 digits=3), 
-                                                     upper=round(quantile(estimate, 0.975), digits=3))
-education <- ACS %>% group_by(education) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
+                                                sd=round(sd(estimate), digits=3), 
+                                                lower=round(quantile(estimate, 0.025), 
+                                                            digits=3), 
+                                                upper=round(quantile(estimate, 0.975), digits=3))
+
+gender <- ACS %>% group_by(gender) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
                                                  sd=round(sd(estimate), digits=3), 
                                                  lower=round(quantile(estimate, 0.025), 
                                                              digits=3), 
                                                  upper=round(quantile(estimate, 0.975), digits=3))
+gender <- cbind(gender, UCLA %>% group_by(gender) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
+
+age <- ACS %>% group_by(age) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
+                                           sd=round(sd(estimate), digits=3), 
+                                           lower=round(quantile(estimate, 0.025), 
+                                                       digits=3), 
+                                           upper=round(quantile(estimate, 0.975), digits=3))
+age <- cbind(age, UCLA %>% group_by(age) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
+
+race_ethnicity <- ACS %>% group_by(race_ethnicity) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
+                                                                 sd=round(sd(estimate), digits=3), 
+                                                                 lower=round(quantile(estimate, 0.025), 
+                                                                             digits=3), 
+                                                                 upper=round(quantile(estimate, 0.975), digits=3))
+race_ethnicity <- cbind(race_ethnicity, UCLA %>% group_by(race_ethnicity) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
+education <- ACS %>% group_by(education) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
+                                                       sd=round(sd(estimate), digits=3), 
+                                                       lower=round(quantile(estimate, 0.025), 
+                                                                   digits=3), 
+                                                       upper=round(quantile(estimate, 0.975), digits=3))
+education <- cbind(education, UCLA %>% group_by(education) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
 foreign_born <- ACS %>% group_by(foreign_born) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
-                                                    sd=round(sd(estimate), digits=3), 
-                                                    lower=round(quantile(estimate, 0.025), 
-                                                                digits=3), 
-                                                    upper=round(quantile(estimate, 0.975), digits=3))
-employment <- ACS %>% group_by(employment) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
                                                              sd=round(sd(estimate), digits=3), 
                                                              lower=round(quantile(estimate, 0.025), 
                                                                          digits=3), 
                                                              upper=round(quantile(estimate, 0.975), digits=3))
+foreign_born <- cbind(foreign_born , UCLA %>% group_by(foreign_born) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
+employment <- ACS %>% group_by(employment) %>% summarise(post_strat_mean=round(mean(estimate), digits=4), 
+                                                         sd=round(sd(estimate), digits=3), 
+                                                         lower=round(quantile(estimate, 0.025), 
+                                                                     digits=3), 
+                                                         upper=round(quantile(estimate, 0.975), digits=3))
+employment <- cbind(employment , UCLA %>% group_by(employment) %>% summarise(survey_mean=round(mean(vote_2020), digits=4)) %>% select(survey_mean))
+
 
 # Survey data summaries
 UCLA$state <- as.factor(UCLA$state)
 levels(UCLA$state) <- append(state.name, values="District of Columbia", after=8)
 UCLA_states <- UCLA %>% group_by(state) %>% summarise(mean=round(mean(vote_2020), digits=4))
+
+UCLA_employment <- UCLA %>% group_by(employment) %>% summarise(mean=round(mean(vote_2020), digits=4))
 
 mean(UCLA$vote_2020)
 mean(ACS$estimate)
@@ -97,7 +121,10 @@ mean(ACS$estimate)
 overall <- cbind(states, raw_data_mean=UCLA_states$mean)
 
 # TABLES
-summarise(ACS, Vote=mean(ACS$estimate), 'Standard Deviation' = sd(ACS$estimate)) %>% rbind(summarise(UCLA, Vote = mean(UCLA$vote_2020), "Standard Deviation" = sd(UCLA$vote_2020)))
+ACS %>% summarise(Vote=mean(ACS$estimate), 
+                  'Standard Deviation' = sd(ACS$estimate)) %>% 
+  rbind(summarise(UCLA, Vote = mean(UCLA$vote_2020), 
+                  "Standard Deviation" = sd(UCLA$vote_2020)))
 
 # PLOTS
 install.packages("usmap")
@@ -119,41 +146,69 @@ ggplot(states, aes(x=reorder(state, post_strat_mean), y=post_strat_mean)) + geom
   labs(subtitle="Survey versus Post-Stratified Estimates by State")
 ggsave("outputs/figures/survey_versus_poststrat_state.pdf")
 
+par(mfrow=c(2,2))
 # Age post-stratification estimates
-ggplot(age, aes(x=age, y=post_strat_mean)) + geom_bar(stat="identity") +
+age %>% ggplot(aes(x=age, y=post_strat_mean)) + geom_path(group=1) + 
+  geom_point() + geom_path(aes(x=age, y=survey_mean, group=1), 
+                           linetype="dashed") +
+  geom_point(aes(x=age, y=survey_mean), color="dark grey") +
   theme(axis.text.x = element_text(angle=90)) + xlab("Age Group") + ylab("") +
   geom_hline(yintercept=0.5) + 
   ggtitle("Predicted Republican Proportion of Popular Vote") +
-  labs(subtitle="Survey versus Post-Stratified Estimates")
+  labs(subtitle="By Age Group, Survey versus Post-Stratified Estimates")
 ggsave("outputs/figures/survey_versus_poststrat_age.pdf")
 
 # Race post-stratification estimates
 race_ethnicity$race_ethnicity <- str_to_title(race_ethnicity$race_ethnicity)
-ggplot(race_ethnicity, aes(x=reorder(race_ethnicity, post_strat_mean), y=post_strat_mean)) + geom_bar(stat="identity") +
-  theme(axis.text.x = element_text(angle=90)) + xlab("Race") + ylab("") +
+race_ethnicity %>% ggplot(aes(x=race_ethnicity, y=post_strat_mean)) + geom_path(group=1) + 
+  geom_point() + geom_path(aes(x=race_ethnicity, y=survey_mean, group=1), 
+                           linetype="dashed") +
+  geom_point(aes(x=race_ethnicity, y=survey_mean), color="dark grey") +
+  theme(axis.text.x = element_text(angle=90)) + xlab("Racial or Ethnic Identity") + ylab("") +
   geom_hline(yintercept=0.5) + 
   ggtitle("Predicted Republican Proportion of Popular Vote") +
-  labs(subtitle="By Racial or Ethnic Identity")
+  labs(subtitle="By Race or Ethnicity, Survey versus Post-Stratified Estimates")
 ggsave("outputs/figures/predicted_republican_race.pdf")
 
 # Education post-stratification estimates
 education$education <- as.factor(education$education)
 levels(education$education) <- c('Less than high school', 'Some high school',
-                                'Completed high school', 'Some post-secondary',
-                                'Post-secondary degree', 'Post-graduate degree')
-ggplot(education, aes(x=education, y=post_strat_mean)) + geom_bar(stat="identity") +
-  theme(axis.text.x = element_text(angle=90)) + xlab("Education") + ylab("") +
+                                 'Completed high school', 'Some post-secondary',
+                                 'Post-secondary degree', 'Post-graduate degree')
+education %>% ggplot(aes(x=education, y=post_strat_mean)) + geom_path(group=1) + 
+  geom_point() + geom_path(aes(x=education, y=survey_mean, group=1), 
+                           linetype="dashed") +
+  geom_point(aes(x=education, y=survey_mean), color="dark grey") +
+  theme(axis.text.x = element_text(angle=90)) + 
+  xlab("Highest Level of Education Completed") + 
+  ylab("") +
   geom_hline(yintercept=0.5) + 
   ggtitle("Predicted Republican Proportion of Popular Vote") +
-  labs(subtitle="By Level of Education")
+  labs(subtitle="By Educational Attainment, Survey versus Post-Stratified Estimates")
 ggsave("outputs/figures/predicted_republican_education.pdf")
 
 
 # Employment post-stratification estimates
 employment$employment <- str_to_sentence(employment$employment)
-ggplot(employment, aes(x=reorder(employment, post_strat_mean), y=post_strat_mean)) + geom_bar(stat="identity") + 
-  xlab("Employment") + ylab("") +
+employment %>% ggplot(aes(x=employment, y=post_strat_mean)) + geom_path(group=1) + 
+  geom_point() + geom_path(aes(x=employment, y=survey_mean, group=1), 
+                           linetype="dashed") +
+  geom_point(aes(x=employment, y=survey_mean), color="dark grey") +
+  xlab("Employment Status") + ylab("") +
   geom_hline(yintercept=0.5) + 
   ggtitle("Predicted Republican Proportion of Popular Vote") +
-  labs(subtitle="By Employment Status")
+  labs(subtitle="By Employment Status, Survey versus Post-Stratified Estimates")
 ggsave("outputs/figures/predicted_republican_employment.pdf")
+
+
+# Gender post-stratification estimates
+gender$gender <- str_to_sentence(gender$gender)
+gender %>% ggplot(aes(x=gender, y=post_strat_mean)) + geom_path(group=1) + 
+  geom_point() + geom_path(aes(x=gender, y=survey_mean, group=1), 
+                           linetype="dashed") +
+  geom_point(aes(x=gender, y=survey_mean), color="dark grey") +
+  xlab("Gender") + ylab("") +
+  geom_hline(yintercept=0.5) + 
+  ggtitle("Predicted Republican Proportion of Popular Vote") +
+  labs(subtitle="By Gender, Survey versus Post-Stratified Estimates")
+ggsave("outputs/figures/predicted_republican_gender.pdf")
