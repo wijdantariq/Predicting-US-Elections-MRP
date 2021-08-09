@@ -1,4 +1,4 @@
-# Forecasting the popular vote in the 2020 American presidential elections
+# Forecasting the popular vote in the 2020 American presidential elections using multilevel regression with post-stratification
 In this paper, we use the multilevel regression with post-stratification method to forecast the overall popular vote of the 2020 American presidential elections. The paper is available in the "outputs" folder. This paper was written before the election results were announced.
 
 ## Note on file structure
